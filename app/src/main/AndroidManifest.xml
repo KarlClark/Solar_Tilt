@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.clarkgarrett.solartilt"
+	android:versionCode="8"
+	android:versionName="8.1" >
+
+	<uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+	<uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
+	<uses-feature android:name="android.hardware.screen.landscape" android:required="true" />
+	<uses-feature android:name="android.hardware.location.gps" android:required="true" />
+	
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+	<application
+		android:allowBackup="true"
+		android:icon="@drawable/solar_tilt_launcher"
+		android:label="@string/app_name"
+		android:theme="@style/AppTheme" >
+		<activity
+			android:name="com.clarkgarrett.solartilt.SolarTiltActivity"
+			android:label="@string/app_name" >
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity  android:name=".SolarTiltAngleLevelActivity"
+			android:screenOrientation="landscape"
+			android:label="@string/app_name">
+		</activity>
+	</application>
+
+</manifest>

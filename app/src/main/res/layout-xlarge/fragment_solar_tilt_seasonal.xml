@@ -1,0 +1,280 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@drawable/solarpanel"
+	android:orientation="vertical" >
+
+	<TextView
+		android:id="@+id/textView2"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="30dp"
+		android:layout_marginTop="30dp"
+		android:gravity="center"
+		android:text="@string/idealTilt"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:textSize="45sp"
+		android:textStyle="bold"
+		android:typeface="normal" />
+
+	<TableLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:shrinkColumns="*"
+		android:stretchColumns="*" >
+
+		<TableRow>
+
+			<TextView
+				android:id="@+id/textView10"
+				android:layout_height="wrap_content"
+				android:layout_alignLeft="@+id/textView2"
+				android:layout_below="@+id/textView2"
+				android:gravity="center"
+				android:text="@string/spring"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:textSize="45sp"
+				android:textStyle="bold"
+				android:typeface="normal" />
+
+			<TextView
+				android:id="@+id/textView11"
+				android:layout_height="wrap_content"
+				android:layout_alignRight="@+id/textView1"
+				android:gravity="center"
+				android:text="@string/summer"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:textSize="45sp"
+				android:textStyle="bold"
+				android:typeface="normal" />
+
+			<TextView
+				android:id="@+id/textView12"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="@string/fall"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:textSize="45sp"
+				android:textStyle="bold"
+				android:typeface="normal" />
+
+			<TextView
+				android:id="@+id/textView13"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="@string/winter"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:textSize="45sp"
+				android:textStyle="bold"
+				android:typeface="normal" />
+		</TableRow>
+
+		<TableRow>
+
+			<Button
+				android:id="@+id/Button_SeasonalSpring"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:layout_weight="1"
+				android:background="@android:drawable/btn_default"
+				android:focusable="false"
+				android:focusableInTouchMode="false"
+				android:gravity="center"
+				android:hint="@string/dots"
+				android:imeOptions="flagNoExtractUi"
+				android:inputType="numberSigned"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:textColorHint="@color/black"
+				android:textSize="45sp"
+				android:textStyle="bold"
+				android:width="75dp" />
+
+			<Button
+				android:id="@+id/Button_SeasonalSummer"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:layout_weight="1"
+				android:background="@android:drawable/btn_default"
+				android:focusable="false"
+				android:focusableInTouchMode="false"
+				android:gravity="center"
+				android:hint="@string/dots"
+				android:inputType="numberSigned"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:textColorHint="@color/black"
+				android:textSize="45sp"
+				android:textStyle="bold"
+				android:width="75dp" />
+
+			<Button
+				android:id="@+id/Button_SeasonalFall"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:layout_weight="1"
+				android:background="@android:drawable/btn_default"
+				android:focusable="false"
+				android:focusableInTouchMode="false"
+				android:gravity="center"
+				android:hint="@string/dots"
+				android:inputType="numberSigned"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:textColorHint="@color/black"
+				android:textSize="45sp"
+				android:textStyle="bold"
+				android:width="75dp" />
+
+			<Button
+				android:id="@+id/Button_SeasonalWinter"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:layout_weight="1"
+				android:background="@android:drawable/btn_default"
+				android:focusable="false"
+				android:focusableInTouchMode="false"
+				android:gravity="center"
+				android:hint="@string/dots"
+				android:inputType="numberSigned"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:textColorHint="@color/black"
+				android:textSize="45sp"
+				android:textStyle="bold"
+				android:width="75dp" />
+
+		</TableRow>
+	</TableLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp" >
+
+		<TextView
+			android:id="@+id/textView6"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+            android:text="@string/latitude"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textSize="35sp"
+			android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp" />
+
+		<TextView
+			android:id="@+id/textViewSeasonalDegrees"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="15dp"
+			android:layout_toRightOf="@+id/textView6"
+			android:gravity="right"
+			android:hint="@string/smalldots"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textColorHint="@color/black"
+			android:textSize="35sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textView8"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/textView6"
+			android:layout_marginLeft="50dp"
+			android:text="@string/edit2"
+			android:textColor="@color/black"
+			android:textSize="25sp"
+			android:textStyle="bold|italic" />
+
+		<Button
+			android:id="@+id/buttonEditSeasonal"
+			style="?android:attr/buttonStyleSmall"
+			android:layout_width="65dp"
+			android:layout_height="50dp"
+			android:layout_alignParentRight="true"
+			android:layout_below="@+id/textView6"
+			android:layout_marginRight="30dp"
+			android:background="@drawable/angle_button" />
+
+		<TextView
+			android:id="@+id/textView1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/textViewSeasonalDegrees"
+			android:text="@string/degreee"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textSize="35sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textViewSeasonalMinutes"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="8dp"
+			android:layout_toRightOf="@+id/textView1"
+			android:gravity="right"
+			android:hint="@string/smalldots"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textColorHint="@color/black"
+			android:textSize="35sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textView3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/textViewSeasonalMinutes"
+			android:text="@string/quote"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textSize="35sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textView4"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/textViewSeasonalSeconds"
+			android:text="@string/quotes"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textSize="35sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textViewSeasonalSeconds"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"
+			android:layout_marginLeft="8dp"
+			android:layout_toRightOf="@+id/textView3"
+			android:gravity="right"
+			android:hint="@string/smalldots"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textColorHint="@color/black"
+			android:textSize="35sp"
+			android:textStyle="bold" />
+
+	</RelativeLayout>
+
+	<TextView
+		android:id="@+id/textView_SeasonalMessage"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="30dp"
+		android:background="@color/lightblue"
+		android:ems="10"
+		android:focusable="false"
+		android:gravity="center_vertical|center_horizontal"
+		android:paddingLeft="15dp"
+		android:paddingRight="15dp"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:textColor="@color/blue"
+		android:textSize="35sp"
+		android:textStyle="bold"
+		android:visibility="visible" />
+
+</LinearLayout>

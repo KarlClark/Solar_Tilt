@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/linearLayoutDateTop"
+	android:layout_width="wrap_content"
+	android:layout_height="match_parent"
+	android:background="@drawable/solarpanel"
+	android:gravity="right"
+	android:orientation="vertical" >
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="50dp" >
+
+		<TextView
+			android:id="@+id/textView1"
+			android:layout_width="wrap_content"
+			android:layout_height="37dp"
+			android:layout_margin="15dp"
+			android:text="@string/tilt_angle"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<Button
+			android:id="@+id/ButtonTiltAngleDateEdit"
+			android:layout_width="94dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="15dp"
+			android:background="@android:drawable/btn_default"
+			android:ems="10"
+			android:hint="@string/dots"
+			android:paddingBottom="0dp"
+			android:paddingTop="0dp"
+			android:text="-39.99"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textColorHint="@color/black"
+			android:textSize="20sp"
+			android:textStyle="bold" >
+
+		</Button>
+	</LinearLayout>
+
+	<RelativeLayout
+		android:id="@+id/relativeLayoutDate"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="0dp" >
+
+		<TextView
+			android:id="@+id/textViewLatitude"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignBottom="@+id/editTextDD"
+			android:layout_alignParentTop="true"
+			android:layout_marginLeft="10dp"
+			android:layout_toRightOf="@+id/editTextDD"
+			android:gravity="center_vertical"
+			android:text="@string/latitude"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textViewSlash"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignBottom="@+id/editTextMM"
+			android:layout_alignParentTop="true"
+			android:layout_toRightOf="@+id/editTextMM"
+			android:gravity="center_vertical"
+			android:paddingLeft="0dp"
+			android:text="@string/slash"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textViewDate"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignBottom="@+id/editTextMM"
+			android:layout_alignParentTop="true"
+			android:layout_marginLeft="15dp"
+			android:gravity="center_vertical"
+			android:text="@string/date"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textView3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/editTextDateDegrees"
+			android:text="@string/degreee"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textView4"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/editTextDateMinutes"
+			android:text="@string/quote"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/textView8"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/editTextDateSeconds"
+			android:text="@string/quotes"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<EditText
+			android:id="@+id/editTextMM"
+			android:layout_width="45dp"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/textViewDate"
+			android:background="@null"
+			android:ellipsize="end"
+			android:ems="10"
+			android:gravity="right"
+			android:hint="@string/hintmm"
+			android:imeOptions="flagNoExtractUi|actionDone"
+			android:inputType="number"
+			android:maxLength="2"
+			android:paddingRight="0dp"
+			android:textColorHint="@color/blue"
+			android:textCursorDrawable="@drawable/cursor_big"
+			android:textSize="20sp"
+			android:textStyle="bold" >
+
+		</EditText>
+
+		<EditText
+			android:id="@+id/editTextDD"
+			android:layout_width="40dp"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/textViewSlash"
+			android:background="@null"
+			android:ellipsize="end"
+			android:ems="10"
+			android:hint="@string/hintdd"
+			android:imeOptions="flagNoExtractUi|actionDone"
+			android:inputType="number"
+			android:maxLength="2"
+			android:paddingLeft="0dp"
+			android:textColorHint="@color/blue"
+			android:textCursorDrawable="@drawable/cursor_big"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<EditText
+			android:id="@+id/editTextDateDegrees"
+			android:layout_width="50dp"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/textViewLatitude"
+			android:background="@null"
+			android:ellipsize="end"
+			android:ems="10"
+			android:gravity="right|center_vertical"
+			android:hint="@string/hintlatitude"
+			android:imeOptions="flagNoExtractUi|actionDone"
+			android:inputType="numberSigned"
+			android:maxLength="3"
+			android:paddingRight="0dp"
+			android:textColorHint="@color/blue"
+			android:textCursorDrawable="@drawable/cursor_big"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<EditText
+			android:id="@+id/editTextDateMinutes"
+			android:layout_width="40dp"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/textView3"
+			android:background="@null"
+			android:ellipsize="end"
+			android:ems="10"
+			android:gravity="right|center_vertical"
+			android:hint="@string/hintlatitude"
+			android:imeOptions="flagNoExtractUi|actionDone"
+			android:inputType="number"
+			android:maxLength="2"
+			android:paddingRight="0dp"
+			android:textColorHint="@color/blue"
+			android:textCursorDrawable="@drawable/cursor_big"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+		<EditText
+			android:id="@+id/editTextDateSeconds"
+			android:layout_width="40dp"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/textView4"
+			android:background="@null"
+			android:ellipsize="end"
+			android:ems="10"
+			android:gravity="right|center_vertical"
+			android:hint="@string/hintlatitude"
+			android:imeOptions="flagNoExtractUi|actionDone"
+			android:inputType="number"
+			android:maxLength="2"
+			android:paddingRight="0dp"
+			android:textColorHint="@color/blue"
+			android:textCursorDrawable="@drawable/cursor_big"
+			android:textSize="20sp"
+			android:textStyle="bold" />
+
+	</RelativeLayout>
+
+	<TextView
+		android:id="@+id/textViewDateMessageEdit"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="0dp"
+		android:background="@color/lightblue"
+		android:paddingLeft="15dp"
+		android:paddingRight="15dp"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:textSize="20sp"
+		android:textStyle="bold"
+		android:textColor="@color/blue" />
+
+</LinearLayout>
