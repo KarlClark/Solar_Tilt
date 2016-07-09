@@ -50,7 +50,8 @@
     <string name="dots">". . ."</string>
     <string name="smalldots">...</string>
     <string name="levelingTool">Tap tilt angle to display leveling tool.</string>
-    <string name="noPermission">Cannot retrieve latitude because location permission not granted.</string>
+    <string name="noPermission">Cannot retrieve latitude because location permission not granted. Enter location manually or tap here to allow location permission.</string>
+    <string name="noPermissionDone">Cannot retrieve latitude because location permission not granted for this app. Enter latitude manually.</string>
     	
 
 </resources>

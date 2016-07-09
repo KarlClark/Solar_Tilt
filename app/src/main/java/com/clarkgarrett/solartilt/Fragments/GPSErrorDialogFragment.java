@@ -1,4 +1,4 @@
-package com.clarkgarrett.solartilt;
+package com.clarkgarrett.solartilt.Fragments;
 /*
  * This dialog fragment displays a dialog asking the user if he wants
  * to turn on the GPS.  When we get the answer, we pass it back to our
@@ -9,14 +9,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-public class SolarTiltFragmentDialog extends DialogFragment {
-	private 
+import com.clarkgarrett.solartilt.Listeners.DialogClickListener;
+import com.clarkgarrett.solartilt.R;
+
+public class GPSErrorDialogFragment extends android.support.v4.app.DialogFragment {
+	private
 	DialogClickListener callback;
 	String TAG="## My Info ##";
 	

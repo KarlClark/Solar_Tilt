@@ -1,4 +1,4 @@
-package com.clarkgarrett.solartilt;
+package com.clarkgarrett.solartilt.Fragments;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -15,10 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.clarkgarrett.solartilt.AngleLevelView;
+import com.clarkgarrett.solartilt.R;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SolarTiltFragmentAngleLevel extends Fragment {
+public class AngleLevelFragment extends Fragment {
 	
 	private float[] mAccelerometerValues,mMagneticFieldValues;
 	private float[] mOrientationValues = new float[3];
@@ -37,10 +40,10 @@ public class SolarTiltFragmentAngleLevel extends Fragment {
 	
 	// Convenience method that does the work of creating a fragment
 	// with a bundle containing the angle.
-	public static SolarTiltFragmentAngleLevel newInstance(float angle){
+	public static AngleLevelFragment newInstance(float angle){
 		Bundle args = new Bundle();
 		args.putFloat(ANGLE, angle);
-		SolarTiltFragmentAngleLevel fragment = new SolarTiltFragmentAngleLevel();
+		AngleLevelFragment fragment = new AngleLevelFragment();
 		fragment.setArguments(args);
 		return fragment;
 	}

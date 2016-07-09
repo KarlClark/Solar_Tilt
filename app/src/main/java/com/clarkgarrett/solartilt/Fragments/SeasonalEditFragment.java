@@ -1,4 +1,4 @@
-package com.clarkgarrett.solartilt;
+package com.clarkgarrett.solartilt.Fragments;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -22,13 +22,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-public class SolarTiltFragmentSeasonalEdit extends Fragment implements TextWatcher, View.OnTouchListener, OnEditorActionListener{
+import com.clarkgarrett.solartilt.DataSingleton;
+import com.clarkgarrett.solartilt.R;
+import com.clarkgarrett.solartilt.Utility;
+
+public class SeasonalEditFragment extends Fragment implements TextWatcher, View.OnTouchListener, OnEditorActionListener{
 	
 	private View mView;
 	private Button  mSummer_Button , mWinter_Button , mSpring_Button , mFall_Button;
 	private EditText  mDegrees_EditText , mMinutes_EditText , mSeconds_EditText;
 	private TextView mMessage_TextView;
-	private SolarTiltData mData;
+	private DataSingleton mData;
 	private boolean mFragmentStarted;
 	private InputMethodManager mImm;
 	private boolean mLandscape;
@@ -57,9 +61,9 @@ public class SolarTiltFragmentSeasonalEdit extends Fragment implements TextWatch
 	@Override
 	public boolean onEditorAction(TextView v, int actionId, KeyEvent ke){
 		if(actionId == EditorInfo.IME_ACTION_DONE  || actionId == EditorInfo.IME_ACTION_UNSPECIFIED){
-			if (SolarTiltStaticEntities.latitudeIsOk(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText, mMessage_TextView)){
-				double latitude = SolarTiltStaticEntities.convertLatitude(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText);
-				SolarTiltStaticEntities.calculateAngles(mSpring_Button, mSummer_Button, mFall_Button, mWinter_Button, latitude);
+			if (Utility.latitudeIsOk(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText, mMessage_TextView)){
+				double latitude = Utility.convertLatitude(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText);
+				Utility.calculateAngles(mSpring_Button, mSummer_Button, mFall_Button, mWinter_Button, latitude);
 				mMessage_TextView.setText(R.string.levelingTool);
 			}else{
 				if ((mScreenSize == Configuration.SCREENLAYOUT_SIZE_SMALL || 
@@ -105,7 +109,7 @@ public class SolarTiltFragmentSeasonalEdit extends Fragment implements TextWatch
 		Display d = getActivity().getWindowManager().getDefaultDisplay();
 		mLandscape = d.getWidth() > d.getHeight();
 		
-		mData=SolarTiltData.get();
+		mData= DataSingleton.get();
 		
 		getIDs();
 		wireUpListeners();
@@ -136,15 +140,15 @@ public class SolarTiltFragmentSeasonalEdit extends Fragment implements TextWatch
 			else{
 				latitude=mData.mLocation.getLatitude();
 			}
-			SolarTiltStaticEntities.setLatitude(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText, latitude);
-			SolarTiltStaticEntities.calculateAngles(mSpring_Button, mSummer_Button, mFall_Button, mWinter_Button, latitude);
+			Utility.setLatitude(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText, latitude);
+			Utility.calculateAngles(mSpring_Button, mSummer_Button, mFall_Button, mWinter_Button, latitude);
 			mMessage_TextView.setText(R.string.levelingTool);
 		}
 		else{
 			//Entered fragment by returning from leveling tool fragment.
-			if (SolarTiltStaticEntities.latitudeIsOk(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText, mMessage_TextView)){
-				latitude=SolarTiltStaticEntities.convertLatitude(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText);
-				SolarTiltStaticEntities.calculateAngles(mSpring_Button, mSummer_Button, mFall_Button, mWinter_Button, latitude);
+			if (Utility.latitudeIsOk(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText, mMessage_TextView)){
+				latitude= Utility.convertLatitude(mDegrees_EditText, mMinutes_EditText, mSeconds_EditText);
+				Utility.calculateAngles(mSpring_Button, mSummer_Button, mFall_Button, mWinter_Button, latitude);
 				mMessage_TextView.setText(R.string.levelingTool);
 			}
 		}
@@ -190,28 +194,28 @@ public class SolarTiltFragmentSeasonalEdit extends Fragment implements TextWatch
 		mSpring_Button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v){
-				SolarTiltStaticEntities.startAngleLevelActivity(getActivity(), mSpring_Button, mFragmentStarted, mMessage_TextView);
+				Utility.startAngleLevelActivity(getActivity(), mSpring_Button, mFragmentStarted, mMessage_TextView);
 			}
 		});
 		
 		mSummer_Button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v){
-				SolarTiltStaticEntities.startAngleLevelActivity(getActivity(), mSummer_Button, mFragmentStarted, mMessage_TextView);
+				Utility.startAngleLevelActivity(getActivity(), mSummer_Button, mFragmentStarted, mMessage_TextView);
 			}
 		});
 		
 		mFall_Button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v){
-				SolarTiltStaticEntities.startAngleLevelActivity(getActivity(), mFall_Button, mFragmentStarted, mMessage_TextView);
+				Utility.startAngleLevelActivity(getActivity(), mFall_Button, mFragmentStarted, mMessage_TextView);
 			}
 		});
 		
 		mWinter_Button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v){
-				SolarTiltStaticEntities.startAngleLevelActivity(getActivity(), mWinter_Button, mFragmentStarted, mMessage_TextView);
+				Utility.startAngleLevelActivity(getActivity(), mWinter_Button, mFragmentStarted, mMessage_TextView);
 			}
 		});
 	}

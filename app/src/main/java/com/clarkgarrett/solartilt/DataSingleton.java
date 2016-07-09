@@ -4,9 +4,9 @@ import android.location.Location;
 
 //This is singleton class for storing some data that needs to survive
 //activity recreation.
-public class SolarTiltData {
+public class DataSingleton {
 	
-	private static SolarTiltData sSLD;
+	private static DataSingleton sSLD;
 	public boolean mDialogShown,mDialogShowing,mYesClicked;
 	public boolean mDateLatitudeWasShown=false;
 	public boolean mSeasonalLatitudeWasShown=false;
@@ -18,11 +18,11 @@ public class SolarTiltData {
 	
 	public Location mLocation;
 	
-	private SolarTiltData() {};
+	private DataSingleton() {};
 	
-	public static SolarTiltData get() {
+	public static DataSingleton get() {
 		if (sSLD == null) {
-			sSLD = new SolarTiltData();
+			sSLD = new DataSingleton();
 		}
 		return sSLD;
 	}

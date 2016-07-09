@@ -1,4 +1,4 @@
-package com.clarkgarrett.solartilt;
+package com.clarkgarrett.solartilt.Fragments;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -22,10 +22,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.clarkgarrett.solartilt.DataSingleton;
+import com.clarkgarrett.solartilt.R;
+import com.clarkgarrett.solartilt.Utility;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class SolarTiltFragmentDateEdit extends Fragment implements TextWatcher, View.OnTouchListener, OnEditorActionListener{
+public class DateEditFragment extends Fragment implements TextWatcher, View.OnTouchListener, OnEditorActionListener{
 	
 	private TextView mTextView_Message;
 	private EditText mEditText_MM, mEditText_DD, mEditText_Degrees,
@@ -33,7 +37,7 @@ public class SolarTiltFragmentDateEdit extends Fragment implements TextWatcher, 
 	Button mButton_TiltAngle;
 	private int mScreenSize;
 	private boolean mLandscape;
-	private SolarTiltData mData;
+	private DataSingleton mData;
 	private boolean mFragmentStarted= false;
 	private int[] mMonthLengths = new int[] {31,28,31,30,31,30,31,31,30,31,30,31};
 	private InputMethodManager mImm;
@@ -122,7 +126,7 @@ public class SolarTiltFragmentDateEdit extends Fragment implements TextWatcher, 
 		Display d = getActivity().getWindowManager().getDefaultDisplay();
 		mLandscape = d.getWidth() > d.getHeight();
 		
-		mData=SolarTiltData.get();
+		mData= DataSingleton.get();
 		
 		mTextView_Message =(TextView)v.findViewById(R.id.textViewDateMessageEdit);
 		mEditText_MM =(EditText)v.findViewById(R.id.editTextMM);
@@ -149,16 +153,16 @@ public class SolarTiltFragmentDateEdit extends Fragment implements TextWatcher, 
 			else{
 				latitude=mData.mLocation.getLatitude();
 			}
-			SolarTiltStaticEntities.setDate(mEditText_MM, mEditText_DD);
-			SolarTiltStaticEntities.setLatitude(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds, latitude);
-			SolarTiltStaticEntities.calculateTiltAngle(mEditText_MM, mEditText_DD, latitude, mButton_TiltAngle);
+			Utility.setDate(mEditText_MM, mEditText_DD);
+			Utility.setLatitude(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds, latitude);
+			Utility.calculateTiltAngle(mEditText_MM, mEditText_DD, latitude, mButton_TiltAngle);
 			mTextView_Message.setText(R.string.levelingTool);
 		}
 		else{
 			// Entered fragment by returning from leveling tool fragment.
-			if(SolarTiltStaticEntities.latitudeIsOk(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds, mTextView_Message)){
-				latitude = SolarTiltStaticEntities.convertLatitude(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds);
-				SolarTiltStaticEntities.calculateTiltAngle(mEditText_MM, mEditText_DD, latitude, mButton_TiltAngle);
+			if(Utility.latitudeIsOk(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds, mTextView_Message)){
+				latitude = Utility.convertLatitude(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds);
+				Utility.calculateTiltAngle(mEditText_MM, mEditText_DD, latitude, mButton_TiltAngle);
 				mTextView_Message.setText(R.string.levelingTool);
 			}
 		}
@@ -202,9 +206,9 @@ public class SolarTiltFragmentDateEdit extends Fragment implements TextWatcher, 
 			return;
 		}
 
-		if (SolarTiltStaticEntities.latitudeIsOk(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds, mTextView_Message)){
-			double latitude = SolarTiltStaticEntities.convertLatitude(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds);
-			SolarTiltStaticEntities.calculateTiltAngle(mEditText_MM, mEditText_DD, latitude, mButton_TiltAngle);
+		if (Utility.latitudeIsOk(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds, mTextView_Message)){
+			double latitude = Utility.convertLatitude(mEditText_Degrees, mEditText_Minutes, mEditText_Seconds);
+			Utility.calculateTiltAngle(mEditText_MM, mEditText_DD, latitude, mButton_TiltAngle);
 			mTextView_Message.setText(R.string.levelingTool);
 		}
 	}
@@ -232,7 +236,7 @@ public class SolarTiltFragmentDateEdit extends Fragment implements TextWatcher, 
 		mButton_TiltAngle.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v){
-				SolarTiltStaticEntities.startAngleLevelActivity(getActivity(), mButton_TiltAngle, mFragmentStarted, mTextView_Message);
+				Utility.startAngleLevelActivity(getActivity(), mButton_TiltAngle, mFragmentStarted, mTextView_Message);
 			}
 		});
 	}

@@ -8,16 +8,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.clarkgarrett.solartilt.Activities.AngleLevelActivity;
+
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SolarTiltStaticEntities {
+public class Utility {
 	
-	public static final int mStartFragmentDateEdit=0;
-	public static final int mStartFragmentSeasonal=1;
-	public static final int mStartFragmentSeasonalEdit=2;
-	public static final double INVALIDLATITUDE=1000;
+	public static final int START_DATE_EDIT_FRAGMENT = 1;
+	public static final int START_SEASONAL_FRAGMENT = 2;
+	public static final int START_SEASONAL_EDIT_FRAGMENT = 3;
+	public static final double INVALID_LATITUDE =1000;
 	private static final String TAG = "## My Info ##";
 	
 	public static int getDaysFromEquinox(int mm, int dd, double latitude) {
@@ -41,7 +43,7 @@ public class SolarTiltStaticEntities {
 	
 	public static void calculateTiltAngle(TextView textView_MM, TextView textView_DD , double latitude, Button button_TiltAngle){
 			
-			if (textView_MM.getText().length() == 0  || textView_DD.getText().length() == 0  ||  latitude == INVALIDLATITUDE){
+			if (textView_MM.getText().length() == 0  || textView_DD.getText().length() == 0  ||  latitude == INVALID_LATITUDE){
 				button_TiltAngle.setText("");
                 button_TiltAngle.setTag(null);
 				return;
@@ -64,7 +66,7 @@ public class SolarTiltStaticEntities {
 	}
 	
 	public static void calculateAngles(Button springB, Button summerB, Button fallB, Button winterB, double latitude){
-		if(latitude == INVALIDLATITUDE){
+		if(latitude == INVALID_LATITUDE){
 			springB.setText("");
             springB.setTag(null);
 
@@ -143,21 +145,39 @@ public class SolarTiltStaticEntities {
 		}
 
         intString = degreesEt.getText().toString();
-		int degrees=Integer.parseInt(intString);
+		int degrees = 0;
+		try {
+			degrees = Integer.parseInt(intString);
+		}catch(NumberFormatException e){
+			messageTv.setText(R.string.badDegrees);
+			return false;
+		}
 		if (degrees < -90 || degrees > 90){
 			messageTv.setText(R.string.badDegrees);
 			return false;
 		}
 
         intString= minutesEt.getText().toString();
-		int minutes=Integer.parseInt(intString);
+		int minutes = 0;
+		try {
+			minutes = Integer.parseInt(intString);
+		}catch(NumberFormatException e){
+			messageTv.setText(R.string.badMinutes);
+			return false;
+		}
 		if (minutes < 0 || minutes > 59){
 			messageTv.setText(R.string.badMinutes);
 			return false;
 		}
 
         intString=secondsEt.getText().toString();
-		int seconds=Integer.parseInt(intString);
+		int seconds = 0;
+		try {
+			seconds = Integer.parseInt(intString);
+		}catch(NumberFormatException e){
+			messageTv.setText(R.string.badSeconds);
+			return false;
+		}
 		if (seconds < 0 || seconds > 59){
 			messageTv.setText(R.string.badSeconds);
 			return false;
@@ -184,7 +204,7 @@ public class SolarTiltStaticEntities {
 			return;
 		}
 		if (! mFragmentStarted) {
-			 Intent i = new Intent(context, SolarTiltAngleLevelActivity.class);
+			 Intent i = new Intent(context, AngleLevelActivity.class);
              double  dAngle = (Double)tiltAngle.getTag();
              float angle = (float)dAngle;
 			 i.putExtra("angle", angle);

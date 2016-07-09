@@ -1,4 +1,4 @@
-package com.clarkgarrett.solartilt;
+package com.clarkgarrett.solartilt.Activities;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,9 +7,11 @@ import android.os.PowerManager.WakeLock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 
-public class SolarTiltAngleLevelActivity extends FragmentActivity {
+import com.clarkgarrett.solartilt.Fragments.AngleLevelFragment;
+import com.clarkgarrett.solartilt.R;
+
+public class AngleLevelActivity extends FragmentActivity {
 	private FragmentManager fm=getSupportFragmentManager();
 	private WakeLock mWakeLock;
 	private static final String TAG2="## My Info2 ##";
@@ -27,7 +29,7 @@ public class SolarTiltAngleLevelActivity extends FragmentActivity {
 		fm = getSupportFragmentManager();
 		Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
 		if (fragment == null){
-			fragment= SolarTiltFragmentAngleLevel.newInstance(angle);
+			fragment= AngleLevelFragment.newInstance(angle);
 			fm.beginTransaction().add(R.id.fragmentContainer, fragment).commit();
 		}
 	}
