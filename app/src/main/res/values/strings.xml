@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">Solar Tilt</string>
-	<string name="action_settings">Settings</string>
-	<string name="todays_tilt_angle">Today\'s Tilt Angle:</string>
-	<string name="tilt_angle">Tilt Angle:</string>
-	<string name="latitude">Latitude:</string>
-	<string name="date">Date:</string>
-	<string name="seasonal_tilt_angle">Optimal seasonal tilt angles.</string>
-	<string name="seasonal_tilt_angles_two_lines">Optimal seasonal \ntilt angles. </string>
-	<string name="slash">/</string>
-	<string name="edit">Modify date or latitude.</string>
-	<string name="edit2">Modify latitude.</string>
-	<string name="idealTilt">Optimal Tilt Angles by Season</string>
+    <string name="app_name">Solar Tilt</string>
+    <string name="action_settings">Settings</string>
+    <string name="todays_tilt_angle">Today\'s Tilt Angle:</string>
+    <string name="tilt_angle">Tilt Angle:</string>
+    <string name="latitude">Latitude:</string>
+    <string name="date">Date:</string>
+    <string name="seasonal_tilt_angle">Optimal seasonal tilt angles.</string>
+    <string name="seasonal_tilt_angles_two_lines">Optimal seasonal \ntilt angles. </string>
+    <string name="slash">/</string>
+    <string name="edit">Modify date or latitude.</string>
+    <string name="edit2">Modify latitude.</string>
+    <string name="idealTilt">Optimal Tilt Angles by Season</string>
     <string name="spring">Spring</string>
     <string name="summer">Summer</string>
     <string name="fall">Fall</string>
@@ -23,6 +23,7 @@
     <string name="winter_colon">Winter:</string>
     <string name="GPSoff">GPS is off.</string>
     <string name="turn_on_GPS">Turn on GPS?</string>
+    <string name="gpsoff">GPS is off.\n\nTurn on GPS?</string>
     <string name="GPSnotAvailable">GPS service not available.  Enter latitude manually.</string>
     <string name="waitingGPS">Waiting for GPS update.</string>
     <string name="GPSnowCurrentOn">Tap here to turn off GPS.</string>
@@ -52,6 +53,6 @@
     <string name="levelingTool">Tap tilt angle to display leveling tool.</string>
     <string name="noPermission">Cannot retrieve latitude because location permission not granted. Enter location manually or tap here to allow location permission.</string>
     <string name="noPermissionDone">Cannot retrieve latitude because location permission not granted for this app. Enter latitude manually.</string>
-    	
+    <string name="privacyPolicy">Privacy Policy</string>
 
 </resources>

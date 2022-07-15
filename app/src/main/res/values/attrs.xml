@@ -3,6 +3,6 @@
 	<declare-styleable name = "AngleLevelView">
 		<attr name="topBorder" format="float" />
 		<attr name="bottomBorder" format="float" />
-		<attr name="color" format="integer" />
+		<attr name="anglecolor" format="integer" />
 	</declare-styleable>
 </resources>
