@@ -1,9 +1,15 @@
 package com.clarkgarrett.solartilt.Activities;
 
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+import android.view.Menu;
+import android.view.MenuItem;
+
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.clarkgarrett.solartilt.DataSingleton;
 import com.clarkgarrett.solartilt.Fragments.DateEditFragment;
@@ -16,7 +22,7 @@ import com.clarkgarrett.solartilt.Utility;
 
 public class SolarTiltActivity extends FragmentActivity implements FragmentCallback {
 
-	private FragmentManager fm = getSupportFragmentManager();
+	private FragmentManager fm;
 	private String TAG = "## My Info ##";
 	private DateFragment mDate_Fragment;
 	private DateEditFragment mDateEdit_Fragment;
@@ -32,7 +38,10 @@ public class SolarTiltActivity extends FragmentActivity implements FragmentCallb
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		fm = getSupportFragmentManager();
 		setContentView(R.layout.activity_solar_tilt);
+		Drawable d = getPackageManager().getApplicationIcon(getApplicationInfo());
+		getActionBar().setLogo(d);
 	}
 
 	@Override
@@ -51,6 +60,28 @@ public class SolarTiltActivity extends FragmentActivity implements FragmentCallb
 			fm.beginTransaction().add(R.id.fragmentContainer, mDate_Fragment, DATE_FRAGMENT_TAG).commit();
 			mSolarTiltData.mFragmentShown = true;
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.solar_tilt, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem menuItem) {
+		super.onOptionsItemSelected(menuItem);
+		int itemId= menuItem.getItemId();
+		if (itemId == R.id.privacy_policy) {
+			startActivity(new Intent(this, PrivacyPolicyActivity.class));
+		}
+
+		return true;
 	}
 
 	@Override

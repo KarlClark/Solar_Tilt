@@ -1,26 +1,68 @@
 package com.clarkgarrett.solartilt;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
+import android.provider.Settings;
 import android.text.format.DateFormat;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.clarkgarrett.solartilt.Activities.AngleLevelActivity;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Utility {
-	
+
+	private static String privacyPolicyString = null;
 	public static final int START_DATE_EDIT_FRAGMENT = 1;
 	public static final int START_SEASONAL_FRAGMENT = 2;
 	public static final int START_SEASONAL_EDIT_FRAGMENT = 3;
 	public static final double INVALID_LATITUDE =1000;
 	private static final String TAG = "## My Info ##";
+
+	public static AlertDialog getAlertDialog(final Context context, final TextView view){
+		final DataSingleton mData = DataSingleton.get();
+
+		TextView myMsg = new TextView(context);
+		myMsg.setText(R.string.gpsoff);
+		myMsg.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+		myMsg.setGravity(Gravity.CENTER);
+		int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 36, context.getResources().getDisplayMetrics());
+		myMsg.setPadding(px,px,px,px);
+
+		AlertDialog.Builder ab = new AlertDialog.Builder(context);
+		ab
+			.setCancelable(false)
+			.setView(myMsg)
+			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					mData.mYesClicked =true;
+					mData.mDialogShowing=false;
+					context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+				}
+			})
+			.setNegativeButton("No", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					mData.mDialogShowing=false;
+					view.setText(R.string.GPSnotOn);
+				}
+			});
+
+		return ab.create();
+	}
 	
 	public static int getDaysFromEquinox(int mm, int dd, double latitude) {
 		Calendar equinoxDate = Calendar.getInstance();
@@ -122,7 +164,15 @@ public class Utility {
 		String degminsec = degreesEt.getText().toString() + ":" +
 	                       minutesEt.getText().toString() + ":" +
 	                       secondsEt.getText().toString();
-		return Location.convert(degminsec);
+		double loc;
+		try {
+			loc = Location.convert(degminsec);
+		}catch(IllegalArgumentException e){
+			IllegalArgumentException iae = new IllegalArgumentException("Attempt to pass #" + degminsec +"# to Location.convert().  " + e.getMessage());
+			iae.setStackTrace(e.getStackTrace());
+			throw iae;
+		}
+		return loc;
 	}
 	
 	public static boolean latitudeIsOk(EditText degreesEt, EditText minutesEt, EditText secondsEt, TextView messageTv){
@@ -145,6 +195,11 @@ public class Utility {
 		}
 
         intString = degreesEt.getText().toString();
+		Log.i(TAG,"inString=#" + intString +"#" +"  Matches= " + intString.matches("-?[0-9]+"));
+		if (! intString.matches("-?[0-9]+")){
+			messageTv.setText(R.string.badDegrees);
+			return false;
+		}
 		int degrees = 0;
 		try {
 			degrees = Integer.parseInt(intString);
@@ -158,6 +213,10 @@ public class Utility {
 		}
 
         intString= minutesEt.getText().toString();
+		if (! intString.matches("[0-9]+")){
+			messageTv.setText(R.string.badMinutes);
+			return false;
+		}
 		int minutes = 0;
 		try {
 			minutes = Integer.parseInt(intString);
@@ -171,6 +230,10 @@ public class Utility {
 		}
 
         intString=secondsEt.getText().toString();
+		if (! intString.matches("[0-9]+")){
+			messageTv.setText(R.string.badSeconds);
+			return false;
+		}
 		int seconds = 0;
 		try {
 			seconds = Integer.parseInt(intString);
@@ -212,5 +275,4 @@ public class Utility {
 			mFragmentStarted=true;
 		}
 	}
-
 }
