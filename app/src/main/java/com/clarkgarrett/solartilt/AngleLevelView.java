@@ -45,7 +45,7 @@ public class AngleLevelView extends View {
 		 try {
 		       mTopBorder = a.getFloat(R.styleable.AngleLevelView_topBorder, 3);
 		       mBottomBorder = a.getFloat(R.styleable.AngleLevelView_bottomBorder, 20);
-		       mColor = a.getInteger(R.styleable.AngleLevelView_color, getResources().getColor(R.color.blue));
+		       mColor = a.getInteger(R.styleable.AngleLevelView_anglecolor, getResources().getColor(R.color.blue));
 		   } finally {
 		       a.recycle();
 		   }

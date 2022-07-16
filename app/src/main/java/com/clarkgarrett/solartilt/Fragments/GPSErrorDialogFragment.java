@@ -11,11 +11,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import androidx.fragment.app.DialogFragment;
 
 import com.clarkgarrett.solartilt.Listeners.DialogClickListener;
 import com.clarkgarrett.solartilt.R;
 
-public class GPSErrorDialogFragment extends android.support.v4.app.DialogFragment {
+public class GPSErrorDialogFragment extends DialogFragment {
 	private
 	DialogClickListener callback;
 	String TAG="## My Info ##";

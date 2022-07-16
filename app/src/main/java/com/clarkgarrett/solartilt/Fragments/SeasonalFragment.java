@@ -12,8 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -21,6 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 
 import com.clarkgarrett.solartilt.DataSingleton;
 import com.clarkgarrett.solartilt.Listeners.DialogClickListener;
@@ -39,7 +42,7 @@ public class SeasonalFragment extends Fragment implements LocationListener,Dialo
 	private FragmentCallback mFragmentCallback;
 	private double mLatitude;
 	private LocationManager lm;
-	private android.support.v4.app.DialogFragment mDialog;
+	private DialogFragment mDialog;
 	private DataSingleton mData;
 	private boolean mLocationPermissionDenied = false;
 	String TAG = "## My Info ##";
@@ -207,6 +210,7 @@ public class SeasonalFragment extends Fragment implements LocationListener,Dialo
 
 
 	private void checkGPS(){
+		Log.i(TAG, "mDialogShown= " + mData.mDialogShown +"  mYesClicked= " + mData.mYesClicked);
 		if (! locationPermissionsGranted()){
 			// Since the app starts with the DateFragment, the user must have already
 			// seen the permissions dialog.  So don't make him look at it again here.
@@ -227,12 +231,14 @@ public class SeasonalFragment extends Fragment implements LocationListener,Dialo
 			mData.mDialogShown=true;
 		}
 		else{   //GPS is not on.
-			if (! mData.mDialogShown || mData.mYesClicked){  //GPS service is not on. Show dialog asking user if he wants to
-				mData.mYesClicked=false;  // turn on the GPS.  If he answers yes
-				mDialog = new GPSErrorDialogFragment();  // and then doesn't actually turn
-				mDialog.setTargetFragment(this,0); //it on when given the chance then
-				mDialog.setCancelable(false);  //display the dialog again.  Insist on an actual no answer
-				mDialog.show(getFragmentManager(), "tag");  // before letting user proceed without turning on GPS.
+			if (! mData.mDialogShown || mData.mYesClicked || mData.mDialogShowing){
+                // GPS service is not on. Show dialog asking user if he wants to
+                // turn on the GPS.  If he answers yes and then doesn't actually turn
+                // it on when given the chance, then display the dialog again.  Insist
+                // on an actual no answer before letting the user proceed without
+                // turning on GPS.
+				mData.mYesClicked=false;
+                Utility.getAlertDialog(getActivity(), mMessage_TextView).show();
 				mData.mDialogShown=true;
 				mData.mDialogShowing = true;
 			}

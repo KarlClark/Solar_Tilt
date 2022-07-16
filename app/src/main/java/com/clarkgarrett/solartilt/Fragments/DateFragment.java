@@ -2,7 +2,9 @@ package com.clarkgarrett.solartilt.Fragments;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -12,8 +14,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,7 +29,11 @@ import com.clarkgarrett.solartilt.Listeners.FragmentCallback;
 import com.clarkgarrett.solartilt.R;
 import com.clarkgarrett.solartilt.Utility;
 
-public class DateFragment extends Fragment implements DialogClickListener, LocationListener {
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+
+public class DateFragment extends  Fragment implements  LocationListener {
 
 	private LocationManager mLm;
 	private FragmentCallback mFragmentCallback;
@@ -36,7 +42,7 @@ public class DateFragment extends Fragment implements DialogClickListener, Locat
 	private TextView mTextView_MM, mTextView_DD, mTextView_Message, mTextView_Degrees,
 	                 mTextView_Minutes, mTextView_Seconds;
 	private Button mButton_TiltAngle;
-	private android.support.v4.app.DialogFragment mDialog;
+	private DialogFragment mDialog;
 	private DataSingleton mData;
 	private Button mButton_Seasonal, mButton_EditDate;
 	private boolean mFragmentStarted=false, mLocationPermissionDenied = false;
@@ -89,6 +95,7 @@ public class DateFragment extends Fragment implements DialogClickListener, Locat
 
 		mLm= (LocationManager)mContext.getSystemService(Context.LOCATION_SERVICE);
 		mData= DataSingleton.get();
+		//mData.mDialogShown=false;
 		mTextView_MM = (TextView)v.findViewById(R.id.textViewMM);
 		mTextView_DD = (TextView)v.findViewById(R.id.textViewDD);
 		mTextView_Message=(TextView)v.findViewById(R.id.textViewDateMessage);
@@ -205,7 +212,7 @@ public class DateFragment extends Fragment implements DialogClickListener, Locat
 	private void checkGPS(){
 
 		// Must check location permission every time because user can
-		// turn of permission anytime he wants
+		// turn off permission anytime he wants
 		if (! locationPermissionsGranted()){
 			requestLocationPermission();
 			return;
@@ -225,12 +232,14 @@ public class DateFragment extends Fragment implements DialogClickListener, Locat
 			mData.mDialogShown=true;
 		}
 		else{
-			if (! mData.mDialogShown || mData.mYesClicked){  //GPS service is not on. Show dialog asking user if he wants to
-				mData.mYesClicked=false;  // turn on the GPS.  If he answers yes
-				mDialog = new GPSErrorDialogFragment();  // and then doesn't actually turn
-                mDialog.setTargetFragment(this,0); //it on when given the chance then
-                mDialog.setCancelable(false);  //display the dialog again.  Insist on an actual no answer
-                mDialog.show(getFragmentManager(), "tag");  // before letting user proceed without turning on GPS.
+			if (! mData.mDialogShown || mData.mYesClicked || mData.mDialogShowing){
+				// GPS service is not on. Show dialog asking user if he wants to
+				// turn on the GPS.  If he answers yes and then doesn't actually turn
+				// it on when given the chance, then display the dialog again.  Insist
+				// on an actual no answer before letting the user proceed without
+				// turning on GPS.
+				mData.mYesClicked=false;
+				Utility.getAlertDialog(getActivity(), mTextView_Message).show();
                 mData.mDialogShown=true;
                 mData.mDialogShowing = true;
 			}
@@ -264,21 +273,8 @@ public class DateFragment extends Fragment implements DialogClickListener, Locat
 		Utility.calculateTiltAngle(mTextView_MM, mTextView_DD, mLatitude, mButton_TiltAngle);
 		showMessage(getString(R.string.levelingTool) + "  " + mTextView_Message.getText().toString());
 	}
-	
-	public void onYesClick(){
-		// Call back from dialog fragment.  User said yes. So start a settings activity
-		// where he can turn on the GPS.
-		mData.mYesClicked =true;
-		mData.mDialogShowing=false;
-		startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-	}
-	
-	public void onNoClick(){
-		// Call back from dialog fragment.  User said no to turning on GPS.
-		// So tell user to enter latitude manually.
-		mData.mDialogShowing=false;
-		showMessage(getString(R.string.GPSnotOn));
-	}
+
+
 
 	@Override
 	public void onLocationChanged(Location loc){
