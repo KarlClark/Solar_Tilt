@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Karl/AndroidStudioProjects/Solar Tilt 11/app/src/main/res/layout-large/fragment_solar_tilt_date.xml" value="0.33" />
+        <entry key="..\:/Users/Karl/AndroidStudioProjects/Solar Tilt 11/app/src/main/res/layout-port/fragment_solar_tilt_date_const.xml" value="0.33242753623188404" />
+        <entry key="..\:/Users/Karl/AndroidStudioProjects/Solar Tilt 11/app/src/main/res/layout-small/fragment_solar_tilt_date.xml" value="0.7677824267782427" />
         <entry key="..\:/Users/Karl/AndroidStudioProjects/Solar Tilt 11/app/src/main/res/layout/activity_privacy_policy.xml" value="0.33242753623188404" />
         <entry key="..\:/Users/Karl/AndroidStudioProjects/Solar Tilt 11/app/src/main/res/layout/activity_solar_tilt.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/Karl/AndroidStudioProjects/Solar Tilt 11/app/src/main/res/menu/solar_tilt.xml" value="0.3875" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
@@ -48,7 +52,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
